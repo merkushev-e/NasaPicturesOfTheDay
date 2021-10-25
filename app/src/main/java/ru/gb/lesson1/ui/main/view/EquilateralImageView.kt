@@ -1,4 +1,4 @@
-package ru.gb.lesson1.ui.main.model
+package ru.gb.lesson1.ui.main.view
 
 import android.content.Context
 import android.util.AttributeSet
