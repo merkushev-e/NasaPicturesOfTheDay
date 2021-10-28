@@ -124,7 +124,13 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
-            R.id.app_bar_search -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_settings -> {
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.container, SettingsFragment.newInstance())
+                    .addToBackStack("")
+                    .commit()
+            }
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
@@ -140,22 +146,22 @@ class MainFragment : Fragment() {
         context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
         setHasOptionsMenu(true)
 
-        fab.setOnClickListener {
-            if (isMain) {
-                isMain = false
-                bottom_app_bar.navigationIcon = null
-                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_back_fab))
-                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
-            } else {
-                isMain = true
-                bottom_app_bar.navigationIcon =
-                    ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
-                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_plus_fab))
-                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar)
-            }
-        }
+//        fab.setOnClickListener {
+//            if (isMain) {
+//                isMain = false
+//                bottom_app_bar.navigationIcon = null
+//                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+//                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_back_fab))
+//                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+//            } else {
+//                isMain = true
+//                bottom_app_bar.navigationIcon =
+//                    ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
+//                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+//                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_plus_fab))
+//                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar)
+//            }
+//        }
     }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
