@@ -13,4 +13,7 @@
     <string name="today">Today</string>
     <string name="settings_tittle">Settings</string>
     <string name="dark_mode">Night theme</string>
+    <string name="Settings">Settings</string>
+    <string name="Explore">Explore</string>
+    <string name="Home">Home</string>
 </resources>

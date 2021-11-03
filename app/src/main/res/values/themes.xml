@@ -26,10 +26,26 @@
         <item name="colorSecondaryVariant">@color/dark_green</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item><!-- Customize your theme here. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
         <item name="bottomSheetBackgroundColor">@color/light_grey</item>
         <item name="menuIconColor">@color/white</item>
 
+        <item name="bottomNavigationStyle">@style/MyBottomNavigationView</item>
     </style>
+
+    <!--Bottom Navigation View-->
+    <style name="MyBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+    </style>
+
+
+
 
 </resources>
