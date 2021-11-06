@@ -1,4 +1,4 @@
-package ru.gb.lesson1.ui.main.model
+package ru.gb.lesson1.ui.main.model.pictureOfTheDayApi
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

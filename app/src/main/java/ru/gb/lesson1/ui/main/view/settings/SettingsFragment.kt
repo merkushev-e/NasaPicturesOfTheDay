@@ -1,4 +1,4 @@
-package ru.gb.lesson1.ui.main.view
+package ru.gb.lesson1.ui.main.view.settings
 
 import android.content.Context
 import android.os.Bundle

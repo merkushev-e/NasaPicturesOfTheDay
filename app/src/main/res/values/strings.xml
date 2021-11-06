@@ -16,4 +16,6 @@
     <string name="Settings">Settings</string>
     <string name="Explore">Explore</string>
     <string name="Home">Home</string>
+    <string name="next_button">Next Cam</string>
+    <string name="button">Previous Cam</string>
 </resources>

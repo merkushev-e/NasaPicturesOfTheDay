@@ -72,7 +72,7 @@
         </com.google.android.material.chip.ChipGroup>
 
 
-        <ru.gb.lesson1.ui.main.view.EquilateralImageView
+        <ru.gb.lesson1.ui.main.view.view.EquilateralImageView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,19 +101,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </FrameLayout>
-
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:backgroundTint="?android:attr/colorPrimary"
-        app:fabAlignmentMode="center"
-        app:hideOnScroll="true"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

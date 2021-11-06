@@ -6,10 +6,11 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.gb.lesson1.ui.main.model.NasaServerResponseData
-import ru.gb.lesson1.ui.main.model.RemoteDataSource
-import ru.gb.lesson1.ui.main.model.Repository
-import ru.gb.lesson1.ui.main.model.RepositoryImpl
+import ru.gb.lesson1.ui.main.model.marsApi.MarsRemoteDateSource
+import ru.gb.lesson1.ui.main.model.pictureOfTheDayApi.NasaServerResponseData
+import ru.gb.lesson1.ui.main.model.pictureOfTheDayApi.RemoteDataSource
+import ru.gb.lesson1.ui.main.repository.Repository
+import ru.gb.lesson1.ui.main.repository.RepositoryImpl
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,7 +22,9 @@ private const val BEFORE_YESTERDAY = -2
 
 class MainViewModel : ViewModel() {
 
-    private val repositoryImpl: Repository = RepositoryImpl(RemoteDataSource())
+    private val repositoryImpl: Repository = RepositoryImpl(RemoteDataSource(),
+        MarsRemoteDateSource()
+    )
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
 
     val liveData: LiveData<AppState> = liveDataToObserve

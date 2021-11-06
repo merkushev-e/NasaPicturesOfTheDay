@@ -3,12 +3,13 @@ package ru.gb.lesson1.ui.main.view
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.main_activity.*
 import ru.gb.lesson1.R
 import ru.gb.lesson1.databinding.MainActivityBinding
+import ru.gb.lesson1.ui.main.view.mars.MarsFragment
+import ru.gb.lesson1.ui.main.view.main.MainFragment
+import ru.gb.lesson1.ui.main.view.settings.NIGHT_MODE_KEY
+import ru.gb.lesson1.ui.main.view.settings.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,8 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initBottomNavigationView() {
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigationView.selectedItemId = R.id.home
+        binding.bottomNavigation.selectedItemId = R.id.home
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.home -> {
@@ -43,7 +43,10 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.explore ->{
-                    Toast.makeText(this, "Explore", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container, MarsFragment.newInstance())
+                        .commit()
                     true
                 }
 
