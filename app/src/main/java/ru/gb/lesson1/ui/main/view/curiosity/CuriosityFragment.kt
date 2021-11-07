@@ -87,9 +87,12 @@ class CuriosityFragment : Fragment() {
         }
     }
     private fun nextCamera(serverResponse: MarsRoverServerResponseDTO) {
-        if(counter < serverResponse.latest_photos.size){
-            setImageAndDescription(counter, serverResponse)
+        if(counter < serverResponse.latest_photos.size-1) {
             counter += 1
+            setImageAndDescription(counter, serverResponse)
+        } else if(counter == serverResponse.latest_photos.size-1){
+            counter = 0;
+            setImageAndDescription(counter, serverResponse)
 
         } else {
             counter = 0;
@@ -100,13 +103,13 @@ class CuriosityFragment : Fragment() {
     }
     private fun prevCamera(serverResponse: MarsRoverServerResponseDTO) {
         if(counter > 0){
-            setImageAndDescription(counter, serverResponse)
             counter -= 1
+            setImageAndDescription(counter, serverResponse)
+
 
         } else {
             counter = serverResponse.latest_photos.size - 1;
             setImageAndDescription(counter, serverResponse)
-            counter -= 1
         }
 
     }
@@ -117,6 +120,7 @@ class CuriosityFragment : Fragment() {
         binding.roverCamDescription.text = serverResponse.latest_photos[counter].earth_date.toString()
         binding.roverCamDescription.text = serverResponse.latest_photos[counter].camera.full_name.toString()
         binding.roverCamDate.text = serverResponse.latest_photos[counter].earth_date.toString()
+        binding.roverPhotoNumber.text = getString(R.string.Photo_number) + (counter + 1)
         binding.imageViewMarsCam.load(url) {
             lifecycle(this@CuriosityFragment)
             error(R.drawable.ic_load_error_vector)
@@ -124,4 +128,9 @@ class CuriosityFragment : Fragment() {
         }
     }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

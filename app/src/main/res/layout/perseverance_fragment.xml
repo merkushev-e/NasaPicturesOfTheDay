@@ -58,6 +58,17 @@ tools:context=".ui.main.view.perseverance.PerseveranceFragment">
         app:layout_constraintTop_toBottomOf="@+id/rover_cam_description"
         android:text="Date" />
 
+    <TextView
+        android:id="@+id/rover_photo_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Photo №: 32"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rover_cam_date" />
+
     <ru.gb.lesson1.ui.main.view.view.EquilateralImageView
         android:id="@+id/image_view_marsCam"
         android:layout_width="match_parent"
@@ -67,7 +78,7 @@ tools:context=".ui.main.view.perseverance.PerseveranceFragment">
         android:contentDescription="@string/photo_of_the_day_stub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rover_cam_date"
+        app:layout_constraintTop_toBottomOf="@+id/rover_photo_number"
         app:srcCompat="@drawable/ic_no_photo_vector" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

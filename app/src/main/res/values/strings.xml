@@ -18,4 +18,6 @@
     <string name="Home">Home</string>
     <string name="next_button">Next Cam</string>
     <string name="button">Previous Cam</string>
+    <string name="Photo_number"> Photo №: </string>
+
 </resources>
