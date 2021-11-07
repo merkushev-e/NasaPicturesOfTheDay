@@ -5,8 +5,8 @@
 
 
     <item
-        android:id="@+id/explore"
-        android:title="@string/Explore"
+        android:id="@+id/mars"
+        android:title="@string/Mars"
         android:icon="@drawable/ic_international_search_symbol"
         />
 

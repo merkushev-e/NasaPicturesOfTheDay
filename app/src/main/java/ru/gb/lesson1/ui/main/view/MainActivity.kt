@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.explore ->{
+                R.id.mars ->{
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.container, MarsFragment.newInstance())
