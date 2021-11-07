@@ -1,8 +1,7 @@
-package ru.gb.lesson1.ui.main.model
+package ru.gb.lesson1.ui.main.model.pictureOfTheDayApi
 
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PictureOfTheDayAPI {
