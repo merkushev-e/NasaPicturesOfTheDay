@@ -1,4 +1,4 @@
-package ru.gb.lesson1.ui.main.view
+package ru.gb.lesson1.ui.main.view.main
 
 import android.content.Intent
 import android.net.Uri
@@ -9,9 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import coil.api.load
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -20,6 +18,9 @@ import ru.gb.lesson1.databinding.MainFragmentBinding
 import ru.gb.lesson1.ui.main.utils.hide
 import ru.gb.lesson1.ui.main.utils.show
 import ru.gb.lesson1.ui.main.utils.showSnackBar
+import ru.gb.lesson1.ui.main.view.view.BottomNavigationDrawerFragment
+import ru.gb.lesson1.ui.main.view.MainActivity
+import ru.gb.lesson1.ui.main.view.settings.SettingsFragment
 import ru.gb.lesson1.ui.main.viewmodel.AppState
 import ru.gb.lesson1.ui.main.viewmodel.MainViewModel
 
@@ -50,7 +51,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setBottomAppBar(view)
+//        setBottomAppBar(view)
         viewModel.getData()
         viewModel.liveData.observe(viewLifecycleOwner, { AppState ->
             renderData(AppState, view)
@@ -141,31 +142,34 @@ class MainFragment : Fragment() {
     }
 
 
-    private fun setBottomAppBar(view: View) {
-        val context = activity as MainActivity
-        context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
-        setHasOptionsMenu(true)
-
-//        fab.setOnClickListener {
-//            if (isMain) {
-//                isMain = false
-//                bottom_app_bar.navigationIcon = null
-//                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-//                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_back_fab))
-//                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
-//            } else {
-//                isMain = true
-//                bottom_app_bar.navigationIcon =
-//                    ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
-//                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-//                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_plus_fab))
-//                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar)
-//            }
-//        }
-    }
+//    private fun setBottomAppBar(view: View) {
+//        val context = activity as MainActivity
+//
+////        fab.setOnClickListener {
+////            if (isMain) {
+////                isMain = false
+////                bottom_app_bar.navigationIcon = null
+////                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+////                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_back_fab))
+////                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+////            } else {
+////                isMain = true
+////                bottom_app_bar.navigationIcon =
+////                    ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
+////                bottom_app_bar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+////                fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_plus_fab))
+////                bottom_app_bar.replaceMenu(R.menu.menu_bottom_bar)
+////            }
+////        }
+//    }
 
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

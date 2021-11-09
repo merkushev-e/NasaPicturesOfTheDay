@@ -13,4 +13,11 @@
     <string name="today">Today</string>
     <string name="settings_tittle">Settings</string>
     <string name="dark_mode">Night theme</string>
+    <string name="Settings">Settings</string>
+    <string name="Mars">Mars</string>
+    <string name="Home">Home</string>
+    <string name="next_button">Next Cam</string>
+    <string name="button">Previous Cam</string>
+    <string name="Photo_number"> Photo №: </string>
+
 </resources>
