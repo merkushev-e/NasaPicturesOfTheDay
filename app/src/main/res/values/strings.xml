@@ -19,5 +19,10 @@
     <string name="next_button">Next Cam</string>
     <string name="button">Previous Cam</string>
     <string name="Photo_number"> Photo №: </string>
+    <string name="mars_exploration_rovers">MARS Exploration Rovers</string>
+    <string name="latest_photos_from_mars_rovers">Latest photos from Mars Rovers</string>
+    <string name="date">Date</string>
+    <string name="photo_32">Photo №: 32</string>
+    <string name="rover_camera">Rover Camera</string>
 
 </resources>
