@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.mars_fragment.*
 import ru.gb.lesson1.R
-
 import ru.gb.lesson1.databinding.MarsFragmentBinding
 
 
