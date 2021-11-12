@@ -2,4 +2,5 @@
 <resources>
     <dimen name="corner_radius">10dp</dimen>
     <dimen name="settings_header_margin_top">10dp</dimen>
+    <dimen name="bottomsheet_peek_height">15dp</dimen>
 </resources>

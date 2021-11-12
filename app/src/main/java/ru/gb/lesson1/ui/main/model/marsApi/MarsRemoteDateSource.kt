@@ -1,22 +1,24 @@
-package ru.gb.lesson1.ui.main.model
+package ru.gb.lesson1.ui.main.model.marsApi
 
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.gb.lesson1.BuildConfig
 import java.io.IOException
 
-class RemoteDataSource {
+class MarsRemoteDateSource {
+
     private val baseUrl = "https://api.nasa.gov/"
-        val podRetrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
-            .client(createOkHttpClient(PODInterceptor()))
-            .build().create(PictureOfTheDayAPI::class.java)
+    val marsRoverRetrofit = Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+        .client(createOkHttpClient(MRInterceptor()))
+        .build().create(MarsRoversApi::class.java)
 
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
@@ -25,7 +27,7 @@ class RemoteDataSource {
         return httpClient.build()
     }
 
-    inner class PODInterceptor : Interceptor {
+    inner class MRInterceptor : Interceptor {
 
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
@@ -33,8 +35,12 @@ class RemoteDataSource {
         }
     }
 
-    fun getDataFromNasa(callback: Callback<NasaServerResponseData>,date: String){
-        podRetrofit.getPictureOfTheDay(BuildConfig.NASA_API_KEY, date).enqueue(callback)
+    fun getDataFromCuriosity(callback: Callback<MarsRoverServerResponseDTO>){
+        marsRoverRetrofit.getLatestPhotoFromCuriosity(BuildConfig.NASA_API_KEY).enqueue(callback)
     }
 
+    fun getDataFromPerseverance(callback: Callback<MarsRoverServerResponseDTO>){
+        marsRoverRetrofit.getLatestPhotoFromPerseverance(BuildConfig.NASA_API_KEY).enqueue(callback)
+
+    }
 }
