@@ -6,8 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat.recreate
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.api.load
+import kotlinx.android.synthetic.main.main_fragment.*
 import ru.gb.lesson1.R
 import ru.gb.lesson1.databinding.PerseveranceFragmentBinding
 import ru.gb.lesson1.ui.main.model.marsApi.MarsRoverServerResponseDTO
@@ -18,6 +24,8 @@ import ru.gb.lesson1.ui.main.viewmodel.AppState
 import ru.gb.lesson1.ui.main.viewmodel.PerseveranceViewModel
 
 class PerseveranceFragment : Fragment() {
+
+    private var isExpanded = false
 
     companion object {
         fun newInstance() = PerseveranceFragment()
@@ -40,6 +48,8 @@ class PerseveranceFragment : Fragment() {
         _binding = PerseveranceFragmentBinding.bind(view)
         return binding.root
 
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,8 +60,26 @@ class PerseveranceFragment : Fragment() {
             AppState ->
             renderData(AppState, view)
         }
+        initZoomBehavior()
     }
 
+    private fun initZoomBehavior() {
+        binding.imageViewMarsCam.setOnClickListener {
+            isExpanded = !isExpanded
+            TransitionManager.beginDelayedTransition(
+                binding.main, TransitionSet()
+                    .addTransition(ChangeBounds())
+                    .addTransition(ChangeImageTransform())
+            )
+            val params: ViewGroup.LayoutParams = binding.imageViewMarsCam.layoutParams
+            params.height =
+                if (isExpanded) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT
+            binding.imageViewMarsCam.layoutParams = params
+            binding.imageViewMarsCam.scaleType =
+                if (isExpanded) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+
+        }
+    }
 
 
     private fun renderData(appState: AppState?, view: View) {

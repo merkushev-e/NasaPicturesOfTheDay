@@ -43,4 +43,9 @@ class MarsFragment : Fragment() {
         binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
         tab_layout.setupWithViewPager(view_pager)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

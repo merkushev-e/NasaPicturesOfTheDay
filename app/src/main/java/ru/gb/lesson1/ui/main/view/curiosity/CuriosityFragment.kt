@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import coil.api.load
 import ru.gb.lesson1.R
 import ru.gb.lesson1.databinding.CuriosityFragmentBinding
-import ru.gb.lesson1.databinding.PerseveranceFragmentBinding
 import ru.gb.lesson1.ui.main.model.marsApi.MarsRoverServerResponseDTO
 import ru.gb.lesson1.ui.main.utils.hide
 import ru.gb.lesson1.ui.main.utils.show
@@ -17,7 +21,6 @@ import ru.gb.lesson1.ui.main.utils.showSnackBar
 import ru.gb.lesson1.ui.main.view.perseverance.PerseveranceFragment
 import ru.gb.lesson1.ui.main.viewmodel.AppState
 import ru.gb.lesson1.ui.main.viewmodel.CuriosityViewModel
-import ru.gb.lesson1.ui.main.viewmodel.PerseveranceViewModel
 
 
 
@@ -27,6 +30,7 @@ class CuriosityFragment : Fragment() {
         fun newInstance() = PerseveranceFragment()
     }
 
+    private var isExpanded = false
     private var counter: Int = 0
     private  val viewModel: CuriosityViewModel by lazy {
         ViewModelProvider(this).get(CuriosityViewModel::class.java)
@@ -54,6 +58,7 @@ class CuriosityFragment : Fragment() {
                 AppState ->
             renderData(AppState, view)
         }
+        initZoomBehavior()
     }
 
 
@@ -75,6 +80,24 @@ class CuriosityFragment : Fragment() {
                 binding.loadingLayout.hide()
                 binding.main.showSnackBar("Error", "Reload", { viewModel.getCuriosityData() })
             }
+        }
+    }
+
+    private fun initZoomBehavior() {
+        binding.imageViewMarsCam.setOnClickListener {
+            isExpanded = !isExpanded
+            TransitionManager.beginDelayedTransition(
+                binding.main, TransitionSet()
+                    .addTransition(ChangeBounds())
+                    .addTransition(ChangeImageTransform())
+            )
+            val params: ViewGroup.LayoutParams = binding.imageViewMarsCam.layoutParams
+            params.height =
+                if (isExpanded) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT
+            binding.imageViewMarsCam.layoutParams = params
+            binding.imageViewMarsCam.scaleType =
+                if (isExpanded) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+
         }
     }
 
