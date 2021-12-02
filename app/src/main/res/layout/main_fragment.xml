@@ -122,13 +122,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#181818"
+                android:fontFamily="@font/numans"
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:text="На фото видно камни и песок в кратере Даниэлсона (диаметр кратера около 67 км), расположенного на юго-востоке области Arabia Terra."
                 android:textColor="#FFFF"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:layout_editor_absoluteX="402dp"
+                tools:layout_editor_absoluteY="538dp" />
 
 
         </androidx.constraintlayout.motion.widget.MotionLayout>

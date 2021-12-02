@@ -1,9 +1,14 @@
 package ru.gb.lesson1.ui.main.view.main
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
@@ -102,9 +107,22 @@ class MainFragment : Fragment() {
                         error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
+
+                    val spannable = SpannableString(serverResponseData.explanation)
+                    spannable.setSpan(
+                        ForegroundColorSpan(resources.getColor(R.color.light_green, null )),
+                        0,1,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    spannable.setSpan(
+                        StyleSpan(Typeface.BOLD),
+                        0,1,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+
                     with(view) {
                         findViewById<TextView>(R.id.description)
-                            .text = serverResponseData.explanation
+                            .setText(spannable, TextView.BufferType.SPANNABLE)
                         findViewById<TextView>(R.id.title)
                             .text = serverResponseData.title
                     }

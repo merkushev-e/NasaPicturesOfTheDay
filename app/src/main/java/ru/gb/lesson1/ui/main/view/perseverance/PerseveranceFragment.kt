@@ -1,12 +1,18 @@
 package ru.gb.lesson1.ui.main.view.perseverance
 
+import android.graphics.Typeface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.app.ActivityCompat.recreate
 import androidx.transition.ChangeBounds
 import androidx.transition.ChangeImageTransform
@@ -144,7 +150,18 @@ class PerseveranceFragment : Fragment() {
         binding.roverCamDescription.text = serverResponse.latest_photos[counter].earth_date.toString()
         binding.roverCamDescription.text = serverResponse.latest_photos[counter].camera.full_name.toString()
         binding.roverCamDate.text = serverResponse.latest_photos[counter].earth_date.toString()
-        binding.roverPhotoNumber.text = getString(R.string.Photo_number) + (counter + 1)
+        val spannable = SpannableString(getString(R.string.Photo_number) + (counter+1))
+        spannable.setSpan(
+            ForegroundColorSpan(resources.getColor(R.color.dark_blue, null )),
+            8,spannable.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannable.setSpan(
+            StyleSpan(Typeface.BOLD),
+            8,spannable.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.roverPhotoNumber.setText(spannable, TextView.BufferType.SPANNABLE)
         binding.imageViewMarsCam.load(url) {
             lifecycle(this@PerseveranceFragment)
             error(R.drawable.ic_load_error_vector)
