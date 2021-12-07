@@ -1,4 +1,4 @@
-package ru.gb.lesson1.ui.main.view
+package ru.gb.lesson1.ui.main.view.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
