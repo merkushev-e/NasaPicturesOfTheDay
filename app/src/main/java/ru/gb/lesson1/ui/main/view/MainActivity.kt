@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.MainTheme)
         super.onCreate(savedInstanceState)
         setCurrentTheme()
 

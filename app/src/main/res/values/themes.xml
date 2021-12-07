@@ -45,6 +45,10 @@
 
     </style>
 
+    <style name="MainTheme.Splash">
+        <item name="android:windowBackground">@drawable/lash_background_drawable</item>
+    </style>
+
 
 
 
